@@ -9,10 +9,11 @@ For example;
 
 Major web browsers handle this differently;
 
-Browser | First | Second | `element.offsetWidth` | Avoids pixels in multiple elements
-------- | ----- | ------ | --------------------- | ----------------------------------
-Chrome | 5 | 4 | ✅ 5 and 4 respectively | Yes
-Safari | 5 | 4 | 5, _even for the 4px column_ | Yes
-Firefox | 4.5 | 4.5 | rounded to 5 | No
-Edge | 4.5 | 4.5 | rounded to 5 | No
+Browser | First | Second | `element.offsetWidth` | Aliases †
+------- | ----- | ------ | --------------------- | -------
+Chrome | 5 | 4 | ✅ 5 and 4 respectively | No
+Safari | 5 | 4 | 5, _even for the 4px column_ | No
+Firefox | 4.5 | 4.5 | rounded to 5 | Yes
+Edge | 4.5 | 4.5 | rounded to 5 | Yes
  
+† Allows element boundaries to be mid-pixel, causing that pixel to be aliased based on the two elements that it straddles.
