@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+   <head>
+       <title></title>
+       <style>
+           body {
+               /* NOTE: Zoom the the browser on load. */
+               transform: scale(8);
+               transform-origin: top left;
+               font-size: 3px;
+               font-family: monospace;
+           }
+           .ruler {
+               clear: left;
+               text-align: center;
+               padding: 0.5em 0;
+               background: black;
+               color: white;
+           }
+           table {
+               margin: auto;
+           }
+           .column {
+               float: left;
+               width: 50%;
+               min-height: 1px;
+           }
+           .left {
+               background: #ddd;
+           }
+           .right {
+               background: #bbb;
+           }
+           .okay {
+               color: darkgreen;
+           }
+           .error {
+               color: darkred;
+           }
+       </style>
+
+       <script>
+           let offsetsAreCorrect, expectedWidth
+           function calculateAndRender() {
+               const wrapper = document.querySelector('.wrapper')
+               const columns = wrapper.querySelectorAll('.column')
+               let sum = 0
+               for (let i in columns) {
+                   if (columns.hasOwnProperty(i)) {
+                       sum += columns[i].offsetWidth
+                   }
+               }
+               expectedWidth = Number(wrapper.style.width.replace('px', ''))
+               offsetsAreCorrect = sum === expectedWidth
+               for (let i in columns) {
+                   if (columns.hasOwnProperty(i)) {
+                       renderColumn(columns[i])
+                   }
+               }
+           }
+
+           function renderColumn(el) {
+               const computed = window.getComputedStyle(el).width
+               const computedCorrect = computed === expectedWidth / 2 + 'px'
+               const computedClass = computedCorrect ? 'okay' : 'error'
+               const offsetClass = offsetsAreCorrect ? 'okay' : 'error'
+               el.insertAdjacentHTML('afterbegin', `
+                   <table>
+                       <tr class="${computedClass}">  <th>computedStyle</th>  <td>${computed}</td>        </tr>
+                       <tr class="${offsetClass}">    <th>offsetWidth</th>    <td>${el.offsetWidth}</td>  </tr>
+                   </table>
+               `)
+           }
+
+           document.addEventListener('DOMContentLoaded', () => {
+               // Confirm the browser has had a chance to finish rendering.
+               setTimeout(calculateAndRender, 100)
+           })
+       </script>
+   </head>
+   <body>
+       <div class="wrapper" style="width: 99px">
+           <div class="ruler">99px</div>
+           <div class="column left"></div>
+           <div class="column right"></div>
+       </div>
+
+       <div class="ruler" style="width: 100px">100px</div>
+   </body>
+</html>
