@@ -45,6 +45,8 @@ Edge | 4.5 | 4.5 | rounded to 5 | Yes
 
 ### Example
 
+Caveat; This is not compatible with CSS `transform: scale()`, so doesn't work for the test cases in this repository.
+
 ```javascript
 getDimensions(element: HTMLElement) {
     const {round} = Math
