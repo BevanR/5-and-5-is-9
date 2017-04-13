@@ -10,7 +10,7 @@ For example;
 Major web browsers handle this differently;
 
 Browser | First | Second | `element.offsetWidth` | Avoids pixels in multiple elements
------ | ----- | ----- | -----
+------- | ----- | ------ | --------------------- | ----------------------------------
 Chrome | 5 | 4 | ✅ 5 and 4 respectively | Yes
 Safari | 5 | 4 | 5, _even for the 4px column_ | Yes
 Firefox | 4.5 | 4.5 | rounded to 5 | No
