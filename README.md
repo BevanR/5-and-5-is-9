@@ -2,7 +2,7 @@ Test cases for HTML layout dimensions that divide, round and sum to a value grea
 
 For example;
 
-- An document has two columns.
+- A container has two columns.
 - Both columns are 50% the width of the parent.
 - The width of the container is 9 pixels.
 - How wide should each column be?
